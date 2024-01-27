@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding="utf-8"?>
+<odoo>
+	<record id="fees_form_view" model="ir.ui.view">
+		<field name="name">fees.form.view</field>
+		<field name="model">school.fees</field>
+		<field name="arch" type="xml">
+			<form string="fees">
+				<sheet>
+					<div class="oe_title">
+						<h1 class="d-flex">
+							<field name="name"/>
+						</h1>
+					</div>
+					<group col="4">
+						<field name="student_id"/>
+						<field name="fees_date"/>
+						<field name="currency_id"/>
+					</group>
+					<field name="fees_line_ids">
+						<tree editable="top">
+							<field name="name"/>
+							<field name="currency_id"/>
+							<field name="tax"/>
+							<field name="price" sum="price"/>
+							<field name="sub_total" sum="sub_total"/>
+						</tree>
+						<form>
+							<group>
+								<field name="name"/>
+								<field name="currency_id"/>
+								<field name="tax"/>
+								<field name="price"/>
+								<field name="sub_total"/>
+							</group>
+						</form>
+					</field>
+					 <group name="note_group" col="6" class="mt-2 mt-md-0">
+                        <group colspan="4">
+                        </group>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                            <field name="total_fees" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="tax_amount" widget="monetary"  options="{'currency_field': 'currency_id'}"/>
+                            <field name="total" widget="monetary"  options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <div class="clearfix"/>
+                    </group>
+					<!-- <group>
+						<group>
+							<field name="student_id"/>
+							<field name="fees_date"/>
+							<field name="total_fees"/>
+						</group>
+						<group>
+							<field name="currency_id"/>
+							<field name="tax_amount"/>
+							<field name="total"/>
+						</group>
+					</group> -->
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="fees_tree_view" model="ir.ui.view">
+		<field name="name">fees.tree.view</field>
+		<field name="model">school.fees</field>
+		<field name="arch" type="xml">
+			<tree string="fees">
+				<field name="name"/>
+				<field name="student_id"/>
+				<field name="fees_date"/>
+				<field name="total_fees"/>
+				<field name="currency_id"/>
+				<field name="tax_amount"/>
+				<field name="total"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_fees" model="ir.actions.act_window">
+		<field name="name">Fees</field>
+		<field name="res_model">school.fees</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Add Fees
+			</p>
+		</field>
+	</record>
+
+</odoo>

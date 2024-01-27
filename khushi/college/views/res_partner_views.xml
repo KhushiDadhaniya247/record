@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="view_partner_student_form" model="ir.ui.view">
+            <field name="name">res.partner.student.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                  <!-- 1 and 2 right -->
+
+                  <!-- <field name="mobile" position="attributes">
+               #1       <attribute name="required">1</attribute>
+                  </field> -->
+
+                  <xpath expr="//field[@name='mobile']" position="attributes">
+                        <attribute name="required">1</attribute>
+                  </xpath>
+                  <xpath expr="//field[@name='email']" position="after">
+                        <field name="crm"/>
+                  </xpath>
+                  <!-- <field name="mobile" required="1"/> -->
+                  <!-- <form> -->
+
+                      <!--   <xpath expr="//sheet/div[@"<div class="oe_button_box" name="button_box" position="   inside"/>
+                              <button name="action_student" type="object" class="oe_stat_button" icon="fa-star"/>
+                        </xpath> -->
+                        
+
+                      
+                       <!--  <header>
+                              <button name="action_draft" string="Draft" class="btn-secondary" type="object"     states="draft"/>
+                              <button name="action_register" string="Register" class="btn-secondary" type="    object" states="register"/>
+
+                              <field name="state" widget="statusbar" options="{'clickable':'1'}"
+                                    statusbar_visible="draft,register"/>
+                        </header> -->
+                              <!-- <field name="mobile" required="1"/> -->
+
+                              <!-- before, after, replace, inside, attributes -->
+                              <field name="vat" position="after">
+                                    <field name="is_student"/>
+                              </field>
+                              <!-- <field name="website" position="after">s
+                                    <field name="is_teacher"/>
+                     `         </field> -->
+
+                              <xpath expr="//field[@name='mobile']" position="attributes">
+                                    <attribute name="required">1</attribute>
+                              </xpath>
+<!-- 
+                              <field name="vat" position="attributes">
+                                    <attribute name="attrs">{'readonly': [('is_student','=',False)]}</attribute>
+                              </field> -->
+
+            <!--                   <xpath expr="//page[@name='sales_purchases']/group" position="inside">
+                                    <group name="student_info" string="Student Info">
+                                          <field name="student_ref"/>
+                                    </group>
+                              </xpath>
+             -->
+                              <xpath expr="//page[@name='sales_purchases']/group/group[@name='purchase']" position="inside">
+                                    <field name="student_ref"/>
+                              </xpath>
+                              <xpath expr="//notebook/page[@name='internal_notes']" position="after">
+                                    <page name="Reference">
+                                          <group>
+                                                 <field name="student_ref"/>
+                                          </group>
+                                    </page>
+                              </xpath>
+                              <!-- <xpath expr="//pag/e[@name='']" position="inside">
+                                    <group><field name="student_ref"/></group>
+                              </xpath> -->
+                  <!-- </form> -->
+            </field>
+      </record>
+
+      <!-- <record id="view_res_partner_filter" model="ir.ui.view">
+        <field name="name">res.partner.select</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+                <field name="is_student"/>
+                <field name="student_ref"/>
+        </field>
+    </record> -->
+
+</odoo>

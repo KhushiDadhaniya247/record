@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="student_form_view" model="ir.ui.view">
+        <field name="name">student.from.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <header>
+                    <button name="%(action_stud_poup)d" string="Result" class="btn-primary" type="action"/>
+
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                </header>
+                <sheet>
+                    <!-- <sheet> -->
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_teacher" type="object" class="oe_stat_button" icon="fa-calendar">
+                                <field string="Teacher" name="teacher_count" widget="statusbar"/>
+                                <span class="o_stat_text">Teacher</span>
+                            </button>
+                        </div>
+
+                    <div class="oe_title">
+                        <h1 class="d-flex">
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="address"/>
+                            <field name="dob"/>
+                            <field name="gender"/>
+                            <field name="subject" attrs="{
+                                        'invisible': [('teacher_id','=',False)]}"/>/>
+                            <field name="contact"/>
+                            <field name="partner_id" domain="[('is_student','=',True)]"/>
+                            <field name="result_ids"/>
+
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="rollnumber"/>
+                            <field name="is_student"/>
+                            <field name="age"/>
+                            <field name="standard" attrs="{
+                                        'required': [('age','=',False)]}"/>/>
+                            <field name="reg_time"/>
+                            <field name="teacher_id"/>
+                            <field name="binary" widget="image" options="{'size': [0, 64]}"/>
+                            <field name="subject_id"/>
+                        </group>
+                    </group><!-- 
+                    <notebook string="Teacher">
+                        <page name="Teachers">
+                            <field name="teacher_ids">
+                            </field> -->
+                        <!-- </page> -->
+                    <!-- </notebook> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="student_tree_view" model="ir.ui.view">
+        <field name="name">student.tree.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type= "xml">
+            <tree string="Student">
+                <field name="rollnumber"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="date"/>
+                <field name="email"/>
+                <field name="is_student"/>
+                <field name="address" optional="show"/>
+                <field name="dob"/>
+                <field name="age" optional="show"/>
+                <field name="reg_time" optional="show"/>
+                <field name="contact" optional="show"/>
+                <field name="subject_id"/>
+                <!-- <field name="calc_age"/> -->
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="student_search_view" model="ir.ui.view">
+        <field name="name">student.search.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <search string="Student Search">
+                <field name="name" string="Student"/>
+                <filter name="fil_gender" string="Gender: Female" domain="[('gender','=','female')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="gender" string="Gender" domain="[]" context="{'group_by': 'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="student_kanban_view" model="ir.ui.view">
+        <field name="name">student.kanban.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="row">
+                                <strong><field name="name"/></strong>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="student_calender_view" model="ir.ui.view">
+        <field name="name">student.calender.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <calendar string="Student calendar" mode="month" date_start="date">
+                <field name="name"/>
+                <field name="teacher_id" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+    
+<!--         <record id="crm_case_calendar_view_leads" model="ir.ui.view">
+            <field name="name">crm.lead.calendar.lead</field>
+            <field name="model">crm.lead</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Leads Generation" create="0" mode="month" date_start="activity_date_deadline" color="user_id" hide_time="true" event_limit="5">
+                    <field name="expected_revenue"/>
+                    <field name="partner_id" avatar_field="avatar_128"/>
+                    <field name="user_id" filters="1" invisible="1"/>
+                </calendar>
+            </field>
+        </record><field name="view_mode">kanban,tree,calendar,form</field>
+ -->
+
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Student </field>
+        <field name="res_model">student.student</field>
+        
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Student
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,35 @@
+<!-- <odoo>
+
+    <menuitem name="College" id="main_menu_student" sequence="1"/>
+
+        <menuitem id="root_menu_student" name="College"  parent="main_menu_student" action="action_student" sequence="11"/>
+
+        <menuitem id="root_menu_teacher" parent="main_menu_student" action="action_teacher" sequence="12"/>
+</odoo> -->
+
+
+<odoo>
+
+    <menuitem name="College" id="main_menu_student" sequence="1"/>
+
+        <menuitem id="root_menu_student" name="Student"  parent="main_menu_student" action="action_student" sequence="11"/>
+        
+        <menuitem id="root_menu_teacher" parent="main_menu_student" action="action_teacher" sequence="13"/>
+
+        <menuitem id="root_menu_subject" parent="main_menu_student" action="action_subject" sequence="15"/>
+
+        <menuitem id="root_menu_result" parent="main_menu_student" action="action_result" sequence="16"/>
+
+        <menuitem id="root_menu_salary" parent="main_menu_student" action="action_salary" sequence="17"/>
+
+        <menuitem id="root_menu_salary_popup" name="Teacher Salary" parent="main_menu_student" action="action_teacher_poup" sequence="18"/>
+
+        <menuitem id="root_menu_student_report" name="Student Report" parent="main_menu_student" action="action_stud_report" sequence="20"/>
+
+        <menuitem id="root_menu_salary_report" name="Salary Report" parent="main_menu_student" action="action_teacher_salary_report" sequence="22"/>
+
+        <menuitem id="root_menu_salary_report" name="Exam" parent="main_menu_student" action="action_exam" sequence="23"/>
+
+        <menuitem id="root_menu_exam_report" name="Exam Report" parent="main_menu_student" action="action_exam_report" sequence="25"/>
+
+</odoo>

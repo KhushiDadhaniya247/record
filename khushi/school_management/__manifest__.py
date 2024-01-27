@@ -1,0 +1,21 @@
+{
+    'name': 'School Management',
+    'description': 'Manage students',
+    'author': 'ERP Harbor',
+    'website': 'erpharbor.in',
+    'version': '16.0.1.0.0',
+    'depends': [],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/ir_sequence.xml',
+        'views/subject_views.xml',
+        'views/student_views.xml',
+        'views/teacher_views.xml',
+        'views/standard_views.xml',
+        'views/divison_views.xml',
+        'views/school_fees_views.xml',
+        'views/menu.xml',
+    ],
+    'assets': {},
+    'license': 'LGPL-3',
+}

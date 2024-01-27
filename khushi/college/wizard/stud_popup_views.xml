@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stud_poup_form_view" model="ir.ui.view">
+        <field name="name">stud.popup.form.view</field>
+        <field name="model">stud.popup</field>
+        <field name="arch" type="xml">
+            <form string="Popup">
+                <group>
+                    <field name="subject_id"/>
+                    <field name="marks"/>
+                </group>
+                <footer>
+                    <button name="action_submit_stud" type="object" string="Submit" class="btn-primary"/>
+                    <button string="Cancle" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_stud_poup" model="ir.actions.act_window">
+        <field name="name">Stud Popup</field>
+        <field name="res_model">stud.popup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="college.model_student_student"/>
+    </record>
+
+
+</odoo>

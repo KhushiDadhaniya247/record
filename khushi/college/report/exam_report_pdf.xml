@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+       <template id="exam_report_pdf">
+              <t t-call="web.html_container">
+                     <t t-foreach="docs" t-as="o">
+                            <t t-call="web.external_layout">
+                                   <div class="page">
+                                          <center><h2>Exam Report</h2></center>
+                                          <table class="table table-condensed">
+                                          <br/>
+                                          <br/>
+                                          </table>
+                                   </div>
+                            </t>
+                     </t>
+              </t>
+       </template>
+
+
+
+
+
+
+
+
+
+
+
+
+ <record id="action_exam_report_pdf" model="ir.actions.report">
+        <field name="name">Exam Report</field>
+        <field name="model">exam.exam</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.exam_report_pdf</field>
+        <field name="report_file">college.exam_report_pdf</field>
+        <field name="print_report_name">'Exam - %s' %(object.name)</field>
+        <field name="binding_model_id" ref="model_exam_exam"/>
+        <field name="binding_type">report</field>
+ </record>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="salary_form_view" model="ir.ui.view">
+        <field name="name">salary.form.view</field>
+        <field name="model">salary.salary</field>
+        <field name="arch" type="xml">
+            <form string="Salary">
+                <sheet>
+                    <group>
+                         <field name="teacher_id"/>
+                         <field name="date"/>
+                         <field name="total_salary"/>
+                         <field name="tax"/>
+                         <field name="net_salary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="salary_tree_view" model="ir.ui.view">
+        <field name="name">salary.tree.view</field>
+        <field name="model">salary.salary</field>
+        <field name="arch" type="xml">
+            <tree string="Salary">
+                <field name="teacher_id"/>
+                <field name="date"/>
+                <field name="total_salary"/>
+                <field name="tax"/>
+                <field name="net_salary"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_salary" model="ir.actions.act_window">
+        <field name="name">Salary</field>
+        <field name="res_model">salary.salary</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Salary
+            </p>
+        </field>
+    </record>
+</odoo>

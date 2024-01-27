@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sales_form_view" model="ir.ui.view">
+        <field name="name">sales.from.view</field>
+        <field name="model">hospital.sales</field>
+        <field name="arch" type="xml">
+            <form string="Sales">
+                <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        <button name="action_doctor" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field string="Doctor" name="sales_count" widget="statinfo"/>
+                        </button>
+                        </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="medicine"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="sales_tree_view" model="ir.ui.view">
+        <field name="name">sales.tree.view</field>
+        <field name="model">hospital.sales</field>
+        <field name="arch" type="xml">
+            <tree string="Sales">
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="date"/>
+                <field name="gender"/>
+                <field name="price"/>
+                <field name="medicine"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_sales" model="ir.actions.act_window">
+        <field name="name">Sales</field>
+        <field name="res_model">hospital.sales</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type='html'>
+            <p class="o_view_nocontent_smiling_face">
+                Add Sales
+            </p>
+        </field>
+    </record>
+</odoo>
+
+                

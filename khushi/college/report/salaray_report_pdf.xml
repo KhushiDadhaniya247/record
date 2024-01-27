@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_salary_pdf">
+        <t t-call="web.html_container">
+            <!-- <t t-foreach="docs" t-as="o"> -->
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <center><h2><b>Teacher Salary Report</b></h2></center>
+                    <table class="table table-condensed">
+                        <br/>
+                        <br/>
+                        <thead>
+                            <tr style="text-align: center">
+                                <td>Date</td>
+                                <td>Salary</td>
+                                <td>Tax</td>
+                                <td>Net Salary</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="salary" t-as="line">
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <div t-esc="line.date"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.total_salary"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.tax"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.net_salary"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="action_teacher_salary_pdf" model="ir.actions.report">
+        <field name="name">Teacher Salary</field>
+        <field name="model">teacher.teacher</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_salary_pdf</field>
+        <field name="report_file">college.report_salary_pdf</field>
+        <field name="print_report_name">'Teacher - %s' %(object.name)</field>
+        <field name="binding_model_id" ref="model_teacher_teacher"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+
+</odoo>
+<!-- 
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_salary_pdf">
+        <t t-call="web.html_container"> -->
+            <!-- <t t-foreach="docs" t-as="o"> -->
+            <!-- <t t-call="web.basic_layout">
+                <div class="page">
+                    <center><h2><b>Teacher Salary upto 50k</b></h2></center>
+                    <table class="table table-condensed">
+                        <br/>
+                        <br/>
+                        <thead>
+                            <tr style="text-align: center">
+                                <td>Reg.Time</td>
+                                <td>Name</td>
+                                <td>Salary</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="line">
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <div t-esc="line.reg_time"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.name"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.salary"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template> -->
+
+    <!-- teacher.teacher na model mathi salary_ids nu abstract main code niche -->
+   <!--  <div class="page">
+                    <center><h2><b>Teacher Salary</b></h2></center>
+                    <table class="table table-condensed">
+                        <br/>
+                        <br/>
+                        <thead>
+                            <tr style="text-align: center">
+                                <td>Teacher</td>
+                                <td>Start Salary</td>
+                                <td>End Salary</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="salary_ids" t-as="line">
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <div t-esc="line.name"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.salary"/>
+                                    </td> -->
+                                    <!-- <td>
+                                        <div t-esc="line.end_salary"/>
+                                    </td> -->
+               <!--                  </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div> -->

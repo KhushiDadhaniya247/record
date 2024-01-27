@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="divison_view_form" model="ir.ui.view">
+		<field name="name">divison.view.form"</field>
+		<field name="model">divison.divison</field>
+		<field name="arch" type="xml">
+			<form string="divison">
+				<sheet>
+					<group>
+						<field name="name"/>
+						<field name="standard_id"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="divison_tree_view" model="ir.ui.view">
+		<field name="name">divison.tree.form</field>
+		<field name="model">divison.divison</field>
+		<field name="arch" type="xml">
+			<tree string="Divison">
+				<field name="name"/>
+				<field name="standard_id"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_divison" model="ir.actions.act_window">
+		<field name="name">divison</field>
+		<field name="res_model">divison.divison</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Add Divison
+			</p>
+		</field>
+	</record>
+
+	<!-- <menuitem name="divison" id="main_menu_divison" sequence="31"/> -->
+	<!-- <menuitem id="root_menu_divison" name="Divison" parent="menu_configuration" action="action_divison"/> -->
+</odoo>
+
+

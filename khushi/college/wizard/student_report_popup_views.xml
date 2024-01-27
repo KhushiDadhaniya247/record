@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="stud_report_form_view" model="ir.ui.view">
+		<field name="name">stud.report.form.view</field>
+		<field name="model">student.report</field>
+		<field name="arch" type="xml">
+			<form string="Report">
+				<group>
+					<field name="student_id"/>
+					<field name="teacher_id"/>
+					<field name="start_date"/>
+					<field name="end_date"/>
+				</group>
+				<footer>
+					<button name="salary_teacher" type="object" string="Salary" class="btn-primary"/>
+					<button name="report_salary" type="object" string="Print Report" class="btn-primary"/>
+                    <button name="action_report_stud" type="object" string="Print" class="btn-primary"/>
+                    <button string="Cancle" class="btn-secondary" special="cancel"/>
+                </footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_stud_report" model="ir.actions.act_window">
+        <field name="name">Student Report</field>
+        <field name="res_model">student.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="college.model_student_student"/>
+    </record>
+
+    
+</odoo>

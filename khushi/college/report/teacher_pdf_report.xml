@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_teacher_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div t-esc="docs"/>
+                    <div class="page">
+                        <h2><center><b><u>Teacher Information</u></b></center></h2>
+                        <br/>
+                        <div><h5>Name : <span t-field="o.name"/></h5></div>
+                        <br/>
+                        <div><h5>Age : <span t-field="o.age"/></h5></div>
+                        <br/>
+                        <div><h5>Salary : <span t-field="o.salary"/></h5></div>
+                        <br/>
+                        <t t-if="o.contact">
+                            <div><h5>Contact : <span t-field="o.contact"/></h5></div>
+                        </t>
+                        <t t-else="o.reg_time">
+                            <div><h5>Regetration Time : <span t-field="o.reg_time"/></h5></div>
+                        </t>
+                        <br/>
+                        <br/>
+                        <h6>Partner Name: <div t-field="o.partner_id.name"/></h6>
+                        <t t-value="o.partner_id" t-set="partner"/>
+                        <br/>
+                        <h6>Is Teacher: <div t-esc="partner.is_teacher"/></h6>
+                        <br/>
+                        <table width="100%" border="3">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <td><h4> Salary </h4></td>
+                                    <td><h4> Tax </h4></td>
+                                    <td><h4> Net Salary </h4></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.salary_ids" t-as="line">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <h5><div t-esc="line.total_salary"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="line.tax"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="line.net_salary"/></h5>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br/><br/>
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-2" style="margin-auto;">
+                                <table class="table table-condensed" style="border: 3px solid black!important;">
+                                    <tr>
+                                        <td width="40%">
+                                            <p style="text-align:center;padding-top:10px;">
+                                                <!-- <img t-if="not o.imagae_1920"
+                                                     t-att-src="/college/static/icon.png"
+                                                     height="200" width="270"/>
+ -->
+                                                <!-- <img t-if="o.image_1920"
+                                                     t-att-src="'data:image/png;base64,%s' % to_text(o.image_1920)" height="140" border="1" width="120"/>
+                                                     -->
+                                                    <!-- /college/static/icon.png" 
+                                                     alt="Image is not loading"
+                                                     height="200" width="270"/> -->
+                                            </p>
+                                        </td>                         
+                                        <td width="60%">
+                                            <div><h5>Name : <span t-field="o.name"/></h5></div>
+                                            <div><h5>Gender : <span t-field="o.gender"/></h5></div>
+                                            <div><h5>Salary : <span t-field="o.salary"/></h5></div>
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <record id="action_report_teacher" model="ir.actions.report">
+        <field name="name">Teacher Report</field>
+        <field name="model">teacher.teacher</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_teacher_template</field>
+        <field name="report_file">college.report_teacher_template</field>
+        <field name="print_report_name">'Teacher - %s' %(object.name)</field>
+        <field name="binding_model_id" ref="model_teacher_teacher"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+
+</odoo>

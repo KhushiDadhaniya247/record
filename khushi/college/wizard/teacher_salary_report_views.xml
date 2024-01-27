@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="tech_salary_report_form_view" model="ir.ui.view">
+		<field name="name">tech.salary.report.form.view</field>
+		<field name="model">salary.report</field>
+		<field name="arch" type="xml">
+			<form string="Teacher Salary Report">
+				<sheet>
+					<group>
+					<group>
+						<field name="teacher_id"/>
+					</group>
+					<group>
+						<field name="start_salary"/>
+						<field name="end_salary"/>
+					</group>
+					</group>
+				</sheet>
+				<footer>
+					<!-- <button name="Report_salary" type="object" string="Print Report" class="btn-primary"/> -->
+					<button name="salary_report_teacher" type="object" string="Done" class="btn-primary"/>
+					<button string="Close" class="btn-secondary" special="cancel"/>
+					<!-- <button name="Report_salary" type="object" string="Print Report" class="btn-primary"/> -->
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_teacher_salary_report" model="ir.actions.act_window">
+		<field name="name">Teacher Salary Report</field>
+		<field name="res_model">salary.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="binding_model_id" ref="college.model_teacher_teacher"/>
+	</record>	
+</odoo>

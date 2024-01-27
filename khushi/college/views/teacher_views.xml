@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="teacher_form_view" model="ir.ui.view">
+        <field name="name">teacher.form.view</field>
+        <field name="model">teacher.teacher</field>
+        <field name="arch" type="xml">
+            <form string="Teacher">
+                <header>
+                    <button name="%(action_student)d" string="Open Student(action)" class="btn-primary" type="action"/>
+                    <button name="view_student" type="object" string="Open Student(object)"/>
+                     
+                    <button name="action_new" string="New" class="btn-primary" type="object"/> 
+
+                    <button name="action_regine" string="Regine" class="btn-primary" type="object"/>
+                    <button name="action_active" string="Active" class="btn-primary" type="object"/>
+
+                    <!-- Wizard Action-->
+                    <button name="%(action_teacher_poup)d" string="Salary" class="btn-primary" type="action"/>
+
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"
+                        statusbar_visible="new,active,regine"/>
+                </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_student" type="object" class="oe_stat_button" icon="fa-calendar">
+                                <field string="Students" name="student_count" widget="statusbar"/>
+                                <span class="o_stat_text">Students</span>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="age"/>
+                                <field name="student_id"/>
+                                <field name="is_teacher"/>
+                                <field name="status"/> 
+                                    <!-- attrs="{'required': [('status','=',False)]}"/> -->
+                                <field name="reg_time"/>
+                                <field name="partner_name"
+                                    attrs="{'invisible':[('status','!=','married')]}"/>
+                                <field name="salary"/>
+                                <field name="partner_id" domain="[('is_teacher','!=',False)]"/>
+                                 <field name="salary_ids">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="total_salary"/>
+                                        <field name="tax"/>
+                                        <field name="net_salary"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group>
+                                <field name="image_1920" widget="image" class="oe_avatar"/>
+                                <field name="email"/>
+                                <field name="rank"/>
+                                <field name="address"/>
+                                <field name="contact" placeholder="+91"/>
+                                <field name="gender"/>
+                                <field name="student_ids" widget="many2many_tags"/>
+                                <field name="state"/>
+                            </group>
+                        </group>
+
+                        <notebook string="Students">
+                            <page name="Students">
+                                <field name="student_ids">
+                                    <tree editable="top">
+                                        <field name="name"/>
+                                        <field name="age"/>
+                                        <!-- <field name="is_teacher"/> -->
+                                        <!-- <field name="status"/> -->
+                                        <!-- <field name="reg_time"/> -->
+                                        <!-- <field name="rank"/> -->
+                                        <field name="address"/>
+                                        <field name="contact"/>
+                                        <field name="gender"/>
+                                        <!-- <field name="state"/> -->
+                                    </tree>        
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="teacher_tree_view" model="ir.ui.view">
+            <field name="name">teacher.tree.view</field>
+            <field name="model">teacher.teacher</field>
+            <field name="arch" type="xml">
+                <tree string="Teacher">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="is_teacher"/>
+                    <field name="status"/>
+                    <field name="reg_time"/>
+                    <field name="rank"/>
+                    <field name="address"/>
+                    <field name="contact"/>
+                    <field name="gender"/>
+                    <field name="state"/>
+                    <field name="salary"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="teacher_graph_view" model="ir.ui.view">
+            <field name="name">teacher.graph.view</field>
+            <field name="model">teacher.teacher</field>
+            <field name="arch" type="xml">
+                <graph string="Teacher Graph" sample="1">
+                    <field name="salary"/>
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_teacher" model="ir.actions.act_window">
+            <field name="name">Teacher</field>
+            <field name="res_model">teacher.teacher</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add Teacher
+                </p>
+            </field>
+        </record>
+    </odoo>

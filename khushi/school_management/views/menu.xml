@@ -1,0 +1,25 @@
+<odoo>
+	<!-- school -->
+	<menuitem name="School" id="main_menu_student" sequence="1"/>
+
+		<menuitem id="root_menu_student" name="Student"  parent="main_menu_student" action="action_student" sequence="11"/>
+		
+		<!-- teacher -->
+		<menuitem id="root_menu_teacher" parent="main_menu_student" action="action_teacher" sequence="13"/>
+		
+		<!-- school fees -->
+		<menuitem id="root_menu_fees" parent="main_menu_student" action="action_fees" sequence="12"/>
+
+		<!-- Sub -->
+		<menuitem id="menu_configuration" name="Configuration" parent="main_menu_student" sequence="14"/>
+
+			<!-- standard -->
+			 <menuitem id="root_menu_standard" parent="menu_configuration" action="action_standard" sequence="101"/>
+
+			 <!-- subject -->
+			<menuitem id="root_menu_subject" name="Subject" parent="menu_configuration" action="action_subject" sequence="102"/>
+
+			<!-- divison -->
+			<menuitem id="root_menu_divison" name="Divison" parent="menu_configuration" action="action_divison" sequence="103"/>
+		
+</odoo>

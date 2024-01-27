@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="result_form_view" model="ir.ui.view">
+        <field name="name">result.form.view</field>
+        <field name="model">result.result</field>
+        <field name="arch" type="xml">
+            <form string="Result">
+                <sheet>
+                    <group>
+                         <field name="student_id"/>
+                         <field name="subject_id"/>
+                         <field name="marks"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="result_tree_view" model="ir.ui.view">
+        <field name="name">result.tree.view</field>
+        <field name="model">result.result</field>
+        <field name="arch" type="xml">
+            <tree string="Result">
+                <field name="student_id"/>
+                <field name="subject_id"/>
+                <field name="marks"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_result" model="ir.actions.act_window">
+        <field name="name">Result</field>
+        <field name="res_model">result.result</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Result
+            </p>
+        </field>
+    </record>
+</odoo>

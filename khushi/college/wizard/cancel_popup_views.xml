@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cancel_popup_form_view" model="ir.ui.view">
+        <field name="name">cancel.popup.form.view</field>
+        <field name="model">cancel.popup</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Popup">
+                <group>
+                    <field name="date"/>
+                    <field name="c_name"/>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button name="action_cancel_exam" type="object" string="Cancel Exam" class="btn-primary"/>
+                    <button string="Cancle" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_cancel_popup" model="ir.actions.act_window">
+        <field name="name">Cancel Popup</field>
+        <field name="res_model">cancel.popup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="college.model_exam_exam"/>
+    </record>
+
+
+</odoo>

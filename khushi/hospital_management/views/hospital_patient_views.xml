@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="patient_form_view" model="ir.ui.view">
+        <field name="name">patient.from.view</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="patient">
+                <sheet>
+                    <!-- <div class="oe_title">
+                        <h1 class="d-flex">
+                            <field name="name"/>
+                        </h1>
+                    </div> -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_appointment" type="object" class="oe_stat_button" icon="fa-star">
+                            <field string="Appointments" name="appointment_count" widget="statinfo"/>
+                        </button>
+                            <!-- <button name="action_sales" type="object" class="oe_stat_button" icon="fa-star">
+                            <field string="Sales" name="sales_count" widget="statinfo"/>
+                        </button> -->
+
+                    </div> 
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="date"/>
+                            <field name="dob"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="gender"/>
+                            <field name="note"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="patient_tree_view" model="ir.ui.view">
+        <field name="name">patient.tree.view</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree string="patient">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="gender"/>
+                <field name="note"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record> 
+
+    <record id="patient_search_view" model="ir.ui.view">
+        <field name="name">patient.search.view</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Patient Search">
+                <field name="name" string="Patient"/>
+                <field name="note" string="Patient Note"/>
+                <filter name="fil_gender" string="Gender: Female" domain="[('gender','=','female')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="gender" string="Gender" domain="[]" context="{'group_by': 'gender'}"/>
+                    <filter name="grp_date" string="Date" domain="[]" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="patient_kanban_view" model="ir.ui.view">
+        <field name="name">patient.kanban.view</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="note"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="row">
+                                <strong><field name="name"/></strong>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type='html'>
+            <p class="o_view_nocontent_smiling_face">
+                Add Patient
+            </p>
+        </field>
+    </record>
+                
+
+</odoo>

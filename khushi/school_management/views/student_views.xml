@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="student_form_view" model="ir.ui.view">
+        <field name="name">student.form.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <!-- <header>
+                    <field name="zender"/>
+                </header> -->
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="confirm" states="draft"
+                        class="btn-primary" type="object" context="{'set_zender': False}"/>
+                        <!--states="draft or " attrs="{'invisible': [('state', '!=', 'draft')]}" -->
+
+                    <button name="%(action_subject)d" string="Open Subects (action)"
+                        class="btn-primary" type="action"/>
+
+                    <button name="view_subjects" type="object" string="Open Subects (object)"/>
+
+                    <button name="action_draft" string="Set To Draft" states="close"
+                        class="btn-primary" type="object"/>
+
+                    <button id="button_done" name="action_done" string="Mark As Done" states="confirm"
+                        class="btn-primary" type="object"/>
+                        <!-- directly name is right or id is a right -->
+                    
+                    <button name="action_close" string="Close" states="draft,done,confirm,close"
+                        class="btn-secondary" type="object"/>
+                    <!-- No highlight button class="btn.." are delete or secondary -->
+
+                    <button name="action_zender_set" string="Set Zender" class="btn-primary" type="object"/>
+
+
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"
+                        statusbar_visible="draft,close,confirm,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1 class="d-flex">
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                            <group>
+                            <field name="name"/>
+                                <field name="is_student"/>
+                                <field name="address"/>
+                                <field name="email"/>
+                                <field name="age"/>
+                                <field name="percentage"/>
+                                <!-- nolabel="1" -->
+                                <field name="reg_time"/>
+                                <!-- <separator string="Teacher" /> -->
+                                <field name="standard_id"/>
+                                    <!--  required="1" attrs="{
+                                'readonly': [('teacher_id','!=',False)]
+                                }" string="Standard Name"/>
+ -->
+                            <!-- <field name="subject_ids"/> -->
+                                <field name="teacher_id" domain="[('zender','=','female')]" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="rollnumber" readonly="1"/>
+                                <field name="zender" widget="radio"/>
+                                <field name="active" widget="boolean_toggle"/>
+                                <field name="dob"/>
+                                <field name="contact"/>
+                                <field name="binary" invisible="1"/>
+                                <field name="divison_id" attrs="{
+                                'invisible': [('standard_id','=',False)], 
+                                'readonly': [('teacher_id','!=',False)]}"/>
+                                <!-- 'required': [('standard_id','!=',False)], -->
+                                <field name="binary" widget="image" options="{'size': [0, 64]}"/>
+                                <field name="teacher_ids" widget="many2many_tags"/>
+                            </group>
+                    </group>
+                    <notebook string="Students">
+                        <page name="subject">
+                            <field name="subject_ids">
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="student_tree_view" model="ir.ui.view">
+        <field name="name">student.tree.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <field name="name"/>
+                <field name="rollnumber"/>
+                <field name="is_student"/>
+                <field name="dob"/>
+                <field name="address"/>
+                <field name="zender"/>
+                <field name="reg_time"/>
+                <field name="binary"/>
+                <field name="standard_id"/>
+                <field name="divison_id"/>
+                <field name="teacher_id"/>
+                <field name="state"/>
+                <field name="taxt_note"/>
+                <!-- <field name="contact"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a Student
+              </p>
+        </field>
+    </record>
+
+    <!-- Main Menu -->
+    <!-- <menuitem name="School" id="main_menu_student" sequence="31"/> -->
+
+        <!-- <menuitem id="root_menu_student" name="Student"  parent="main_menu_student" action="action_student"/> -->
+
+        <!-- Sub -->
+        <!-- <menuitem id="menu_configuration" name="Configuration" parent="main_menu_student"/> -->
+
+
+
+
+</odoo>

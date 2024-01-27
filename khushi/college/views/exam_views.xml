@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="exam_form_view" model="ir.ui.view">
+        <field name="name">exam.form.view</field>
+        <field name="model">exam.exam</field>
+        <field name="arch" type="xml">
+            <form string="Exam">
+                <header>
+                    <button name="action_draft" string="Draft" class="btn-secondary"  type="object"
+                    />
+
+                    <button name="action_start" string="Start" class="btn-secondary" type="object"
+                    states="draft"/>
+
+                    <button name="action_complete" string="Complete" class="btn-secondary"  type="object" states="start"/>
+
+                    <button name="action_cancel" string="Cancel" class="btn-secondary" type="object" states="draft,start"/>
+
+
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"
+                        statusbar_visible="draft,start,complete,cancel"/>
+                </header>
+                    <sheet>
+                        <h1><field name="sequence"/></h1>
+                        <!-- <h1><field name="Status"/></h1> -->
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Name"/>
+                                <field name="date"/>
+                                <field name="subject"/>
+                                <field name="exam_name"/>
+                                <field name="exam_date"/>
+                            </group>
+                            <group>
+                                <field name="is_student"/>
+                                <field name="teacher_id"/>
+                                <field name="marks"/>
+                                <field name="exam_session"/>
+                            </group>
+                        </group>
+                        <field name="exam_line_ids">
+                            <tree editable="bottom">
+                                <field name="subject"/>
+                                <field name="cut_mark"/>
+                                <field name="line_mark"/>
+                                <field name="total"/>
+                            </tree>
+                            <form>
+                                <field name="subject"/>
+                                <field name="cut_mark"/>
+                                <field name="line_mark"/>
+                                <field name="total"/>
+                            </form>
+                        </field>
+                        <notebook>
+                            <page string="Cancellation">
+                                <group>
+                                    <field name="candidate_name"/>
+                                    <field name="date_exam"/>
+                                    <field name="exam_cancel"/>
+                                </group>
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="exam_tree_view" model="ir.ui.view">
+        <field name="name">exam.tree.view</field>
+        <field name="model">exam.exam</field>
+        <field name="arch" type="xml">
+            <tree string="Exam">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="subject"/>
+                <field name="teacher_id"/>
+                <field name="marks"/>
+                <!-- <field name="exam_session"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_exam" model="ir.actions.act_window">
+        <field name="name">Exam</field>
+        <field name="res_model">exam.exam</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Exam
+            </p>
+        </field>
+    </record>
+</odoo>

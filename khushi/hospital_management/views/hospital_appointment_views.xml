@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="appointment_form_view" model="ir.ui.view">
+        <field name="name">appointment.from.view</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Appointment">
+                <header>
+                    <button name="action_draft" string="Draft" class="btn-secondary"  type="object"/>
+                    <!-- states="confirm" -->
+
+                    <button name="action_confirm" string="Confirm" class="btn-secondary" type="object"/>
+                    <!-- states="done" -->
+
+                    <button name="action_done" string="Done" class="btn-secondary"  type="object"/>
+                    <!-- states="draft" -->
+
+                    <button name="action_cancle" string="Cancle" class="btn-secondary" states="draft,done,confirm,cancle" type="object"/>
+
+
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"
+                        statusbar_visible="draft,cancle,confirm,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="patient_id" options="{'no_create_edit': True}"/>
+                            <field name="note"/>
+                        </group>
+                        <group>
+                            <field name="appointment_date"/>
+                            <field name="doctor_id"/>
+                            <field name="gender"/>
+                            <field name="age"/>
+                        </group>
+                    </group>
+                    <notebook string="appointment">
+                    <page name="Description">
+                        <field name="appointment_lines_ids">
+                            <tree editable="top">
+                                <field name="product_id"/>
+                                <field name="product_qty"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="appointment_tree_view" model="ir.ui.view">
+        <field name="name">appointment.tree.view</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree string="appointment">
+                <field name="name"/>
+                <field name="note"/>
+                <field name="appointment_date"/>
+                <field name="gender"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="appointment_search_view" model="ir.ui.view">
+        <field name="name">appointment.search.view</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <search string="Appointment Search">
+                <field name="name" string="Appointment Name"/>
+                <field name="note" string="Appointment Note"/>
+                <filter name="fil_gender" string="Gender: Male" domain="[('gender','=','male')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="gender" string="Gender" domain="[]" context="{'group_by' : 'gender'}"/>
+                    <filter name="grp_date" string="" domain="[]" context="{'group_by': 'appointment_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="appointment_kanban_view" model="ir.ui.view">
+        <field name="name">appointment.kanban.view</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="note"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="row">
+                                <strong><field name="name"/></strong>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_appointment" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type='html'>
+            <p class="o_view_nocontent_smiling_face">
+                Add Appointment
+            </p>
+        </field>
+    </record>
+                
+
+</odoo>

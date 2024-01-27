@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="doctor_form_view" model="ir.ui.view">
+		<field name="name">doctor.from.view</field>
+		<field name="model">hospital.doctor</field>
+		<field name="arch" type="xml">
+			<form string="doctor">
+                <header>
+                    <button name="action_draft" string="Draft" class="btn-primary"  type="object"/>
+                    <!-- states="confirm" -->
+
+                    <button name="action_confirm" string="Confirm" class="btn-primary" type="object"/>
+                    <!-- states="done" -->
+
+                    <button name="action_done" string="Done" class="btn-primary"  type="object"/>
+                    <!-- states="draft" -->
+
+                    <button name="action_cancle" string="Cancle" class="btn-primary" states="draft,done,confirm,cancle" type="object"/>
+
+
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"
+                        statusbar_visible="draft,cancle,confirm,done"/>
+                </header>
+				<sheet>
+					<!-- <div class="oe_button_box" name="button_box">
+						<button name="%(action_appointment)d" type="action" class="oe_stat_button" icon="				fa-calendar" attrs="{'invisible':[('appointment_count','=',0)]}">
+		                   <field string="Appointments" name="appointment_count" widget="statinfo"/>
+						</button>
+					</div> -->
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="gender"/>
+							<field name="patient_id"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<!-- <field name="sales_id"/> -->
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+	<record id="doctor_tree_view" model="ir.ui.view">
+		<field name="name">doctor.tree.view</field>
+		<field name="model">hospital.doctor</field>
+		<field name="arch" type="xml">
+			<tree string="doctor">
+				<field name="name"/>
+				<field name="gender"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_doctor" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type='html'>
+            <p class="o_view_nocontent_smiling_face">
+                Add Doctor
+            </p>
+        </field>
+    </record>
+				
+
+</odoo>

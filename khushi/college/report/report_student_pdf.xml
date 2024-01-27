@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <center><h2>Teacher Students</h2></center>
+                        <div t-esc="students"/>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Roll Number</th>
+                                    <th>Name</th>
+                                    <th>DOB</th>
+                                    <th>Gender</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="students" t-as="stud">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <h5><div t-esc="stud.rollnumber"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="stud.name"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="stud.dob"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="stud.gender"/></h5>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+
+                        </table>
+
+                        <center><h2>Student Marks Report</h2></center>
+                        <div t-esc="results"/>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>students</th>
+                                    <th>subjects</th>
+                                    <th>marks</th>
+                                    <!-- <th>Net Salary</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="results" t-as="r">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <h5><div t-esc="r.student_id.name"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="r.subject_id.name"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="r.marks"/></h5>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <!-- <tbody> -->
+                                <!-- <t t-foreach="o.salary_ids" t-as="line">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <h5><div t-esc="line.date"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="line.total_salary"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="line.tax"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="line.net_salary"/></h5>
+                                        </td>
+                                    </tr>
+                                </t> -->
+                            <!-- </tbody> -->
+                        </table>
+                        <center><h2><b>Teacher Salary Report</b></h2></center>
+                        <table class="table table-condensed">
+                        <br/>
+                        <br/>
+                        <thead>
+                            <tr style="text-align: center">
+                                <td>Date</td>
+                                <td>Salary</td>
+                                <td>Tax</td>
+                                <td>Net Salary</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="salary" t-as="line">
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <div t-esc="line.date"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.total_salary"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.tax"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="line.net_salary"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    
+
+    <record id="action_report_student_pdf" model="ir.actions.report">
+        <field name="name">Student Report</field>
+        <field name="model">teacher.teacher</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_student_pdf</field>
+        <field name="report_file">college.report_student_pdf</field>
+        <field name="print_report_name">'Student - %s' %(object.name)</field>
+        <field name="binding_model_id" ref="model_student_student"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
+
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_pdf">
+        <t t-call="web.html_container"> -->
+            <!-- <t t-foreach="docs" t-as="o"> -->
+                <!-- <t t-call="web.external_layout">
+                    <div class="page">
+                        <center><h2>Student Report</h2></center>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Date of Birth</th>
+                                </tr>
+                            </thead> -->
+                            <!-- <tbody>
+                                <tr>
+                                    <td><span t-esc="o.name"/></td>
+                                    <td><span t-esc="o.dob"/></td>
+                                </tr>
+                            </tbody> -->
+                            <!-- <tbody>
+
+                                <t t-foreach="docs" t-as="line">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <div t-esc="line.name"/>
+                                        </td>
+                                        <td>
+                                            <div t-esc="line.dob"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t> -->
+        <!-- </t> -->
+    <!-- </template> -->
+
+    <!-- <record id="action_report_student_pdf" model="ir.actions.report">
+        <field name="name">Student Report</field>
+        <field name="model">student.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_student_pdf</field>
+        <field name="report_file">college.report_student_pdf</field>
+        <field name="print_report_name">'Student - %s' %(object.name)</field>
+        <field name="binding_model_id" ref="model_student_student"/>
+        <field name="binding_type">report</field>
+    </record> -->
+<!-- 
+     <center><h2>Teacher Students</h2></center>
+                        <div t-esc="students"/>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Roll Number</th>
+                                    <th>Name</th>
+                                    <th>DOB</th>
+                                    <th>Gender</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="students" t-as="stud">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <h5><div t-esc="stud.rollnumber"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="stud.name"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="stud.dob"/></h5>
+                                        </td>
+                                        <td>
+                                            <h5><div t-esc="stud.gender"/></h5>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+
+                        </table> -->

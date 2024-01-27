@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="teacher_poup_form_view" model="ir.ui.view">
+        <field name="name">wiz.popup.form.view</field>
+        <field name="model">wiz.popup</field>
+        <field name="arch" type="xml">
+            <form string="Popup">
+                <group>
+                    <field name="teacher_id"/>
+                    <field name="date"/>
+                    <field name="total_salary"/>
+                    <field name="tax"/>
+                    <field name="teacher_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_receive_salary" type="object" string="receive" class="btn-primary"/>
+                    <button string="Cancle" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_teacher_poup" model="ir.actions.act_window">
+        <field name="name">Teacher Popup</field>
+        <field name="res_model">wiz.popup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="college.model_teacher_teacher"/>
+    </record>
+</odoo>
